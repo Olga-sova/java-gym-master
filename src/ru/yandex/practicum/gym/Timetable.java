@@ -33,4 +33,8 @@ public class Timetable {
             return Collections.singletonList(session);
         }
     }
+
+    public void getCountByCoaches() {
+
+    }
 }
