@@ -20,6 +20,12 @@ public class TimetableTest {
 
         //Проверить, что за понедельник вернулось одно занятие
         //Проверить, что за вторник не вернулось занятий
+
+        Collection<TrainingSession> sessions = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
+        Assertions.assertEquals(1, sessions.size());
+
+        sessions = timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
+        Assertions.assertEquals(0, sessions.size());
     }
 
     @Test
@@ -49,6 +55,14 @@ public class TimetableTest {
         // Проверить, что за понедельник вернулось одно занятие
         // Проверить, что за четверг вернулось два занятия в правильном порядке: сначала в 13:00, потом в 20:00
         // Проверить, что за вторник не вернулось занятий
+        Collection<TrainingSession> sessions = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
+        Assertions.assertEquals(1, sessions.size());
+
+        sessions = timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY);
+        Assertions.assertEquals(2, sessions.size());
+
+        sessions = timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
+        Assertions.assertEquals(0, sessions.size());
     }
 
     @Test
@@ -64,6 +78,12 @@ public class TimetableTest {
 
         //Проверить, что за понедельник в 13:00 вернулось одно занятие
         //Проверить, что за понедельник в 14:00 не вернулось занятий
-    }
 
+        Collection<TrainingSession> sessions = timetable
+                .getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY, new TimeOfDay(13,0));
+        Assertions.assertEquals(1, sessions.size());
+
+        sessions = timetable.getTrainingSessionsForDayAndTime(DayOfWeek.MONDAY, new TimeOfDay(14,0));
+        Assertions.assertEquals(0, sessions.size());
+    }
 }
